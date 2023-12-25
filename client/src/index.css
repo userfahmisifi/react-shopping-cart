@@ -14,11 +14,3 @@
   grid-template-rows: 50px 1fr 50px;
   height:100%;
 }
-.layout footer{
-  background: #2a5ea5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:#fff;
-  font-size: 20px;
-}
