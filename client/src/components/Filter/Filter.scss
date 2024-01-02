@@ -1,0 +1,24 @@
+
+
+.products-filter{
+    border:1px solid #ccc;
+
+    .filter-title{
+        padding: 4px;
+        background: #2a5ea5;
+        color: #fff;
+    }
+    .filter-content{
+        padding:20px 10px;
+        .content-select{
+            margin: 20px 0;
+            .select{
+                width: 100%;
+                padding:5px 2px;
+                border:1px solid #ccc;
+                outline: 0;
+            }
+        }
+        }
+
+    }

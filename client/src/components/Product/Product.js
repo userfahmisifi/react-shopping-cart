@@ -7,8 +7,8 @@ function Product(props) {
         props.setProduct(props.product)
     }
     return (
-        <div className="item" onClick={() =>openModal(props)}>
-            <img src={props.product.imageUrl} alt={props.product.title} />
+        <div className="item">
+            <img src={props.product.imageUrl} alt={props.product.title} onClick={() =>openModal(props)}/>
             <div className="item-info">
                 {props.product.title}
                 <span className="info-price">${props.product.price}</span>
