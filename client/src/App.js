@@ -10,13 +10,15 @@ import Filter from './components/Filter/Filter';
 function App() {
   const [products, setProducts] = useState(data)
 
+  
+
   return (
     <div className='layout'>
       <Header />
       <main>
         <div className="products">
-          <Products products={products} data={data} />
-          <Filter data={data} setProducts={setProducts} />
+          <Products products={products} />
+          <Filter products={products} data={data} setProducts={setProducts} />
         </div>
       </main>
       <Footer />
