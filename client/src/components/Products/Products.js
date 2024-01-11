@@ -3,21 +3,29 @@ import '../../css/Products/Products.css'
 import Product from '../Product/Product'
 import ProductDetails from '../ProductsDetails/ProductDetails'
 
-function Products({products}) {
+function Products({products,setProduct,product,setProductsInCart,productsInCart,totalPrice,setTotalPrice}) {
   const [isOpen, setIsOpen] = useState(false)
-  const [product, setProduct] = useState({})
   
   return (
     <>
       <div className="products-items">
         {
           products.map((p)=>{
-            return <Product key={p.id} product={p} setIsOpen={setIsOpen} setProduct={setProduct} />
+            return <Product key={p.id} 
+            product={p} 
+            setIsOpen={setIsOpen} 
+            setProduct={setProduct} 
+            setProductsInCart={setProductsInCart} 
+            productsInCart={productsInCart}
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+           
+            />
           })
         }
 
       </div>
-      <ProductDetails isOpen={isOpen} product={product} setIsOpen={setIsOpen}/>
+      <ProductDetails isOpen={isOpen} product={product} setIsOpen={setIsOpen} />
 
     </>
   )

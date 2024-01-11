@@ -16,16 +16,7 @@ function Filter({ products, data, setProducts }) {
 
 
     }
-
-
-
-
-
-
-
-
-
-
+    
     const sortProducts = (e) => {
         setSort(e.target.value)
 
@@ -59,7 +50,7 @@ function Filter({ products, data, setProducts }) {
         <div className="products-filter">
             <h2 className='filter-title'>Filter</h2>
             <div className='filter-content'>
-                <p>Number of Products:4 Products</p>
+                <p>Number of Products:{products.length} Products</p>
                 <div className='content-select'>
                     <p>Filter</p>
                     <select className='select' onChange={filterProductsBySize}>
