@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import '../../css/Cart/Cart.css'
 
-function Cart({ productsInCart, totalPrice,setProductsInCart,setTotalPrice}) {
+function Cart({ productsInCart,setProductsInCart,setShowForm}) {
  const removeFromCart=(product)=>{
       
       setProductsInCart(productsInCart.filter(p=>p.id!=product.id))
-      setTotalPrice(totalPrice-((product.price)*(product.qty)))
  }
 
   return (
@@ -27,10 +26,10 @@ function Cart({ productsInCart, totalPrice,setProductsInCart,setTotalPrice}) {
 
         })}
 
-        {productsInCart.length ? <div className='total'>
-          <p>Total Price:<span className='total-price'>${totalPrice}</span></p>
-          <button className='total-btn'>Select Products</button>
-        </div> : ''}
+        {productsInCart.length>0 && <div className='total'>
+          <p>Total Price:<span className='total-price'>${productsInCart.reduce((acc,p)=>acc+(p.price*p.qty),0)}</span></p>
+          <button className='total-btn' onClick={()=>setShowForm(true)}>Select Products</button>
+        </div>}
       </div>
     </div>
   )

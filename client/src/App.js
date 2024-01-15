@@ -6,16 +6,16 @@ import Products from "./components/Products/Products";
 import data from './data.json'
 import Filter from './components/Filter/Filter';
 import Cart from './components/Cart/Cart';
+import Form from './components/Form/Form';
 
 function App() {
+  const [showForm,setShowForm]=useState(false)
   const [products, setProducts] = useState(data)
   const [product, setProduct] = useState({})
   const [productsInCart, setProductsInCart] = useState(JSON.parse(localStorage.getItem('productsInCart')) || [])
-  const [totalPrice, setTotalPrice] = useState(JSON.parse(localStorage.getItem('totalPrice')) ||0)
  
   useEffect(()=>{
        localStorage.setItem('productsInCart',JSON.stringify(productsInCart))
-       localStorage.setItem('totalPrice',totalPrice)
   },[productsInCart])
 
 
@@ -30,8 +30,7 @@ function App() {
             product={product}
             setProductsInCart={setProductsInCart}
             productsInCart={productsInCart}
-            totalPrice={totalPrice}
-            setTotalPrice={setTotalPrice}
+            
            
           />
 
@@ -41,7 +40,8 @@ function App() {
             setProducts={setProducts}
           />
         </div>
-        <Cart productsInCart={productsInCart} totalPrice={totalPrice} setProductsInCart={setProductsInCart} setTotalPrice={setTotalPrice} />
+        <Cart productsInCart={productsInCart}  setProductsInCart={setProductsInCart} setShowForm={setShowForm}/>
+       {showForm && <Form setShowForm={setShowForm}/>}
 
       </main>
       <Footer />
