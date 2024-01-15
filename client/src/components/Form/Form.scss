@@ -1,0 +1,49 @@
+.form {
+  background: #b1b0b0;
+  padding: 10px 0;
+  position:fixed;
+  bottom:0;
+  width: 100%;
+  form {
+    width: 60%;
+    margin: auto;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div {
+      display: flex;
+      flex-direction: column;
+      input{
+        padding: 10px;
+        outline: 0;
+        border: 0;
+      }
+    }
+    > input {
+      padding: 5px;
+      color: #2a5ea5;
+      background: #fff;
+      border: 1px solid #2a5ea5;
+      border-radius: 5px;
+      transition: 0.5s;
+      cursor: pointer;
+      &:hover {
+        background: #2a5ea5;
+        color: #fff;
+      }
+    }
+  }
+  > div {
+    background: #000;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+  }
+}
