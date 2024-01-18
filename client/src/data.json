@@ -40,9 +40,6 @@
         "imageUrl": "/images/product4.png",
         "desc": "this is product 4",
         "price": 400,
-        "sizes": [
-            "S",
-            "XL"
-        ]
+        "sizes": ["S", "XL"]
     }
 ]
