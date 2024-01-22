@@ -1,80 +1,72 @@
-import React, { useState } from 'react'
-import '../../css/Filter/Filter.css'
+import React, { useState } from "react";
+import "../../css/Filter/Filter.css";
+import { useDispatch, useSelector } from "react-redux";
+import { filterProducts } from "../../redux/actions/productsActions";
+import axios from "axios";
 
+function Filter() {
+  const dispatch = useDispatch();
+  const [sort, setSort] = useState("Latest");
+  const [size, setSize] = useState("All");
 
-function Filter({ products, data, setProducts }) {
-    const [sort,setSort]=useState('Latest')
+  const products = useSelector((state) => state);
 
-    const filterProductsBySize = (e) => {
-        setSort('Latest')
-        if (e.target.value === 'All') {
-            setProducts(data.sort((a,b)=>b.id-a.id))
-        } else {
+  const filterProductsBySize = (e) => {
+    setSize(e.target.value)
+    if(sort==='Lowest'){
+    filterProducts(dispatch, e.target.value,'price');
+  }
+  else if(sort==='Highest'){
+    filterProducts(dispatch, e.target.value,'-price');
 
-            setProducts(data.filter(p => p.sizes.includes(e.target.value)).sort((a,b)=>b.id-a.id))
-        }
+  }
+  else{
+    filterProducts(dispatch,e.target.value, "Latest");
 
+  }
+  };
+
+  const sortProducts = (e) => {
+    setSort(e.target.value);
+    if (e.target.value === "Lowest") {
+      filterProducts(dispatch, size, "price");
+    } else if (e.target.value === "Highest") {
+      filterProducts(dispatch, size, "-price");
+    }
+    else{
+      filterProducts(dispatch, size, "Latest");
 
     }
-    
-    const sortProducts = (e) => {
-        setSort(e.target.value)
+  };
 
-        const items = [...products]
-
-        setProducts(items.sort((a, b) => {
-            if (e.target.value === 'Highest') {
-
-                return b.price - a.price;
-            }
-            else if (e.target.value === 'Lowest') {
-                return a.price - b.price;
-            }
-            else if (e.target.value === 'Latest') {
-                return b.id - a.id;
-            }
-
-
-
-        }))
-    }
-
-
-
-
-
-
-
-
-    return (
-        <div className="products-filter">
-            <h2 className='filter-title'>Filter</h2>
-            <div className='filter-content'>
-                <p>Number of Products:{products.length} Products</p>
-                <div className='content-select'>
-                    <p>Filter</p>
-                    <select className='select' onChange={filterProductsBySize}>
-                        <option>All</option>
-                        <option>XS</option>
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
-                        <option>XXL</option>
-                    </select>
-                </div>
-                <div className='content-select'>
-                    <p>Order</p>
-                    <select className='select'value={sort} onChange={sortProducts}>
-                        <option>Latest</option>
-                        <option>Highest</option>
-                        <option>Lowest</option>
-                    </select>
-                </div>
-            </div>
-
+  return (
+    <div className="products-filter">
+      <h2 className="filter-title">Filter</h2>
+      <div className="filter-content">
+        <p>Number of Products:{products.length} Products</p>
+        <div className="content-select">
+          <p>Filter</p>
+          <select className="select" onChange={filterProductsBySize}>
+            <option>All</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+          </select>
         </div>
-    )
+        <div className="content-select">
+          <p>Order</p>
+          <select className="select" value={sort} onChange={sortProducts}>
+            <option>Latest</option>
+            <option>Highest</option>
+            <option>Lowest</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Filter
+export default Filter;

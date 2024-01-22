@@ -1,26 +1,31 @@
-const express=require('express')
-const Product=require('../Models/productModel')
+const express = require("express");
+const Product = require("../Models/productModel");
 
-const router=express.Router()
+const router = express.Router();
 
+router.post("/", async (req, res) => {
+  const product = await Product.create(req.body);
+  res.send(product);
+});
 
+router.get("/", async (req, res) => {
+  let filterObj = {};
+  if (req.query.sizes && req.query.sizes != "All") {
+    filterObj.sizes = req.query.sizes;
+  }
 
-router.post('/',async(req,res)=>{
-    const product=await Product.create(req.body)
-    res.send(product)
+  let query = Product.find(filterObj);
 
-})
+  if (req.query.sort) {
+    query = query.sort(req.query.sort);
+  }
+  const products = await query;
+  res.send(products);
+});
 
-router.get('/',async(req,res)=>{
-    
-   const products=await Product.find()
-   res.send(products)
-})
+router.delete("/:productId", async (req, res) => {
+  await Product.findByIdAndDelete(req.params.productId);
+  res.send("deleted");
+});
 
-
-router.delete('/:productId',async(req,res)=>{
-     await Product.findByIdAndDelete(req.params.productId)
-     res.send('deleted')
-})
-
-module.exports=router
+module.exports = router;
