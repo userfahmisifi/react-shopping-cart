@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+
+import React, { useState,useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import '../../css/Products/Products.css'
 import Product from '../Product/Product'
 import ProductDetails from '../ProductsDetails/ProductDetails'
+import { fetchProducts } from '../../redux/actions/productsActions'
 
-function Products({products,setProduct,product,setProductsInCart,productsInCart,totalPrice,setTotalPrice}) {
+function Products({setProduct,product,setProductsInCart,productsInCart}) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const dispatch=useDispatch()
+  const products=useSelector(state=>state)
+
+  useEffect(()=>{
+      fetchProducts(dispatch)
+  },[])
   
   return (
     <>
@@ -17,8 +27,6 @@ function Products({products,setProduct,product,setProductsInCart,productsInCart,
             setProduct={setProduct} 
             setProductsInCart={setProductsInCart} 
             productsInCart={productsInCart}
-            totalPrice={totalPrice}
-            setTotalPrice={setTotalPrice}
            
             />
           })
