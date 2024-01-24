@@ -6,11 +6,11 @@ import Product from '../Product/Product'
 import ProductDetails from '../ProductsDetails/ProductDetails'
 import { fetchProducts } from '../../redux/actions/productsActions'
 
-function Products({setProduct,product,setProductsInCart,productsInCart}) {
+function Products({setProduct,product}) {
   const [isOpen, setIsOpen] = useState(false)
 
   const dispatch=useDispatch()
-  const products=useSelector(state=>state)
+  const products=useSelector(state=>state.products)
 
   useEffect(()=>{
       fetchProducts(dispatch)
@@ -25,8 +25,7 @@ function Products({setProduct,product,setProductsInCart,productsInCart}) {
             product={p} 
             setIsOpen={setIsOpen} 
             setProduct={setProduct} 
-            setProductsInCart={setProductsInCart} 
-            productsInCart={productsInCart}
+           
            
             />
           })

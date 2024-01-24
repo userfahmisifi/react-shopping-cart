@@ -26,7 +26,6 @@ export const filterProducts = async (dispatch, val1, val2) => {
 
   const { data } = await axios.get(url);
   if (val2 === "Latest") {
-    console.log('ok')
     data.reverse();
   }
   dispatch({
