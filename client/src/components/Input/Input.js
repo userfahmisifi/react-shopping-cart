@@ -1,6 +1,8 @@
 import React from "react";
 
 function Input({ label, name, type, setVal, val }) {
+
+ 
   const handleChange = (e) => {
     setVal({ ...val, [e.target.name]: e.target.value });
   };
@@ -8,7 +10,7 @@ function Input({ label, name, type, setVal, val }) {
   return (
     <div>
       <label>{label}</label>
-      <input type={type} required name={name} onChange={handleChange} />
+      <input type={type}  name={name} onChange={handleChange} />
     </div>
   );
 }

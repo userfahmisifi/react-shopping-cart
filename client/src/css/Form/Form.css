@@ -47,3 +47,7 @@
   line-height: 30px;
   cursor: pointer;
 }
+.form p {
+  color: red;
+  font-size: 12px;
+}
