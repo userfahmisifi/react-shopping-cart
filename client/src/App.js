@@ -1,26 +1,21 @@
-import React, { useState} from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import Products from "./components/Products/Products";
-import Filter from "./components/Filter/Filter";
-import Cart from "./components/Cart/Cart";
-import Form from "./components/Form/Form";
+import Nav from "./components/Nav/Nav";
+import Home from "./pages/Home";
+import Orders from "./pages/Orders";
 
 function App() {
-  const [showForm, setShowForm] = useState(false);
-  const [product, setProduct] = useState({});
-
   return (
     <div className="layout">
       <Header />
+      <Nav />
       <main>
-        <div className="products">
-          <Products setProduct={setProduct} product={product} />
-
-          <Filter />
-        </div>
-        <Cart setShowForm={setShowForm} />
-        {showForm && <Form setShowForm={setShowForm} />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
       </main>
       <Footer />
     </div>
