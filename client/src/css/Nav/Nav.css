@@ -1,0 +1,18 @@
+.nav {
+  background: #b6b5b5;
+  list-style: none;
+  display: flex;
+}
+.nav-item:first-child {
+  margin-right: 5px;
+}
+.nav-link {
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px;
+  color: #fff;
+  transition: 0.5s;
+}
+.nav-link.active {
+  color: red;
+}
