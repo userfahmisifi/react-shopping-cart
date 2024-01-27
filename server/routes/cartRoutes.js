@@ -1,5 +1,5 @@
 const express = require("express");
-const Cart = require("../Models/cartModel");
+const {Cart} = require("../Models/cartModel");
 const Product = require("../Models/productModel");
 const router = express.Router();
 
@@ -17,6 +17,11 @@ router.get('/',async(req,res)=>{
     const items=await Cart.find().populate('product')
     res.send(items)
 
+})
+
+router.delete('/',async(req,res)=>{
+    await Cart.deleteMany()
+    res.send('cart is empty')
 })
 
 router.delete('/:id',async(req,res)=>{

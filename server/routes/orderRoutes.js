@@ -4,11 +4,12 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   let order = await new Order(req.body).save();
-  order = await order.populate({
-    path: "items",
-    populate: { path: "product" },
-  });
-
+  order=await order.populate({
+    path:'items',
+    populate:{
+      path:'product'
+    }
+  })
   res.send(order);
 });
 

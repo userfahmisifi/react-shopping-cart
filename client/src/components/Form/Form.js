@@ -57,7 +57,7 @@ function Form({ setShowForm }) {
         <input type="submit" value="Submit" />
       </form>
       <div onClick={() => setShowForm(false)}>&times;</div>
-      <OrderModal isOpen={isOpen} setIsOpen={setIsOpen} order={order}/>
+      <OrderModal isOpen={isOpen} setIsOpen={setIsOpen} order={order} setShowForm={setShowForm}/>
     </div>
   );
 }
