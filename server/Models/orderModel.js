@@ -1,13 +1,8 @@
 const mongoose = require("mongoose");
-const Cart = require("./cartModel");
+const {cartSchema }= require("../Models/cartModel");
 
 const orderSchema = new mongoose.Schema({
-  items: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: Cart,
-    },
-  ],
+  items: [cartSchema],
   name: {
     type: String,
     
@@ -18,9 +13,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-orderSchema.pre('save',function(){
-  this.items=this.items.map(item=>item._id)
-})
 
 
 

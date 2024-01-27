@@ -1,6 +1,7 @@
 import axios from 'axios'
 export const GET_CART_Items='GET_CART_Items'
 export const ADD_CART_Items='ADD_CART_Items'
+export const CLEAR_CART_Items='CLEAR_CART_Items'
 export const INCREMENT_QTY='INCREMENT_QTY'
 export const DELETE_CART_ITEM='DELETE_CART_ITEM'
 
@@ -48,6 +49,15 @@ export const removeItemFromCart=async(dispatch,id,itemsInCart)=>{
     dispatch({
         type:DELETE_CART_ITEM,
         payload:items
+    })
+
+}
+
+export const clearCartItems=async(dispatch)=>{
+    await axios.delete(`http://localhost:4000/api/cart`)
+    dispatch({
+        type:CLEAR_CART_Items,
+        payload:[]
     })
 
 }
