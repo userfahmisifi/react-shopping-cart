@@ -5,10 +5,11 @@ const router = express.Router();
 
 
 router.post('/',async(req,res)=>{
-    const {product:productId,qty,_id}=await Cart.create(req.body)
-    const product=await Product.findById(productId)
+    let product=await Cart.create(req.body)
+    product=await product.populate('product')
+    
 
-    res.send({_id,product,qty})
+    res.send(product)
 
 })
 
