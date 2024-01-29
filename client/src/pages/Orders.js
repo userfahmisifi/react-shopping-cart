@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
+import OrdersTable from "../components/OrdersTable/OrdersTable";
 
 function Orders() {
   return (
-    <div>
-      orders
-    </div>
-  )
+    <OrdersTable/>
+  );
 }
 
-export default Orders
+export default Orders;

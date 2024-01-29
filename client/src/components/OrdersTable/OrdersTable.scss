@@ -1,0 +1,24 @@
+table{
+    width: 100%;
+    thead{
+        color:#fff;
+        background: #000;
+        th{
+           &:first-child{
+            width:40%;
+            padding:10px;
+
+           } 
+        }
+    }
+    tbody{
+        tr{
+            text-align: center;
+
+            td{
+                padding: 10px;
+            }
+        }
+    }
+   
+}
