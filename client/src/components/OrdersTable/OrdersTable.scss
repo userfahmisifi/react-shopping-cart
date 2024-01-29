@@ -1,9 +1,12 @@
 table{
     width: 100%;
+    border-collapse: collapse;
     thead{
         color:#fff;
         background: #000;
         th{
+            margin: 0;
+            width: 20%;
            &:first-child{
             width:40%;
             padding:10px;
@@ -14,9 +17,12 @@ table{
     tbody{
         tr{
             text-align: center;
-
+            background: rgb(214, 211, 211);
+           
             td{
                 padding: 10px;
+                 border-bottom: 1px solid #888;  
+                 border-right: 1px solid #888;  
             }
         }
     }
