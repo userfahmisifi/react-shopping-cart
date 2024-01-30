@@ -1,12 +1,19 @@
-import { FILTER_PRODUCTS, GET_PRODUCTS} from "../actions/productsActions"
+import { FILTER_PRODUCTS, GET_PRODUCTS, SET_PRODUCT} from "../actions/productsActions"
+const initState={
+    product:{},
+    products:[]
 
-function productsReducer(state=[],action) {
+}
+function productsReducer(state=initState,action) {
     
     if(action.type===GET_PRODUCTS){
-        return action.payload
+        return {...state,products:action.payload}
+    }
+    if(action.type===SET_PRODUCT){
+        return {...state,product:action.payload}
     }
     else if(action.type===FILTER_PRODUCTS){
-        return action.payload
+        return {...state,products:action.payload}
     }
    
 
@@ -14,3 +21,5 @@ function productsReducer(state=[],action) {
 }
 
 export default productsReducer
+
+

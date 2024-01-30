@@ -10,6 +10,10 @@
   display: flex;
   justify-content: space-between;
 }
+.products-items.start {
+  justify-content: flex-start;
+  gap: 10px;
+}
 .products-items .item {
   width: 24%;
   border: 1px solid #ccc;

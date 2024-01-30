@@ -9,7 +9,7 @@ function Filter() {
   const [sort, setSort] = useState("Latest");
   const [size, setSize] = useState("All");
 
-  const products = useSelector((state) => state.products);
+  const {products} = useSelector((state) => state.products);
 
   const filterProductsBySize = (e) => {
     setSize(e.target.value)

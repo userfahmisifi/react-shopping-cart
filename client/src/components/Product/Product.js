@@ -1,14 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCartItems, incrementQuantity } from '../../redux/actions/cartActions'
+import { addCartItems, incrementQuantity} from '../../redux/actions/cartActions'
+import { setProduct } from '../../redux/actions/productsActions'
+import { toogleProductModal } from '../../redux/actions/modalActions'
 
-function Product({ setIsOpen, setProduct, product}) {
+function Product({product}) {
     const dispatch=useDispatch()
-    const productsInCart=useSelector(state=>state.cart)
+    const productsInCart=useSelector(state=>state.cart.items)
 
-    const openModal = () => {
-        setIsOpen(true)
-        setProduct(product)
+    const openModal = (product) => {
+        dispatch(toogleProductModal())
+        dispatch(setProduct(product))
     }
 
     const addToCart = async(product) => {
@@ -32,12 +34,13 @@ function Product({ setIsOpen, setProduct, product}) {
 
     return (
         <div className="item">
-            <img src={product.imageUrl} alt={product.title} onClick={() => openModal()} />
+            <img src={product.imageUrl} alt={product.title} onClick={() => openModal(product)} />
             <div className="item-info">
                 {product.title}
                 <span className="info-price">${product.price}</span>
             </div>
-            <button className="item-btn" onClick={() =>addToCart(product)}> Add To Cart</button>
+            <button className="item-btn" onClick={() =>addToCart(product)}>Add To Cart</button>
+            
 
         </div>
     )

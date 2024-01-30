@@ -1,7 +1,7 @@
 import axios from 'axios'
-import React from 'react'
 
 export const GET_ALL_ORDERS='GET_ALL_ORDERS'
+export const SET_ORDER='SET_ORDER'
 
 async function getOrders(dispatch) {
  const {data:orders}= await axios.get('http://localhost:4000/api/orders')
@@ -11,6 +11,15 @@ dispatch({
 
 })
   
+}
+
+
+//order action 
+export function setOrder(order){
+    return {
+        type:SET_ORDER,
+        payload:order
+    }
 }
 
 export default getOrders

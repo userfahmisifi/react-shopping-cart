@@ -1,14 +1,18 @@
 import React from 'react'
 import Modal from 'react-modal'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { clearCartItems } from '../../redux/actions/cartActions'
+import { toogleOrderModal } from '../../redux/actions/modalActions'
+import { toogleForm } from '../../redux/actions/orderFormActions'
 
-function OrderModal({isOpen,setIsOpen,order,setShowForm}) {
+function OrderModal() {
   const dispatch=useDispatch()
+  const isOpen=useSelector(state=>state.modal.order)
+  const order=useSelector(state=>state.orders.order)
   
   const closeModal=()=>{
-    setIsOpen(false)
-    setShowForm(false)
+    dispatch(toogleOrderModal())
+    dispatch(toogleForm())
     clearCartItems(dispatch)
   }
 

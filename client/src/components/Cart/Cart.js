@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import '../../css/Cart/Cart.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartItems,removeItemFromCart } from '../../redux/actions/cartActions'
+import { toogleForm} from '../../redux/actions/orderFormActions'
 
-function Cart({setShowForm}) {
+function Cart() {
   const dispatch=useDispatch()
   
   useEffect(()=>{
     getCartItems(dispatch)
   },[])
   
- const productsInCart=useSelector(state=>state.cart)
+ const productsInCart=useSelector(state=>state.cart.items)
 
  
 
@@ -37,7 +38,7 @@ function Cart({setShowForm}) {
 
         {productsInCart.length>0 && <div className='total'>
           <p>Total Price:<span className='total-price'>${productsInCart.reduce((acc,p)=>acc+(p.product.price*p.qty),0)}</span></p>
-          <button className='total-btn' onClick={()=>setShowForm(true)}>Select Products</button>
+          <button className='total-btn' onClick={()=>dispatch(toogleForm())}>Select Products</button>
         </div>}
       </div>
     </div>

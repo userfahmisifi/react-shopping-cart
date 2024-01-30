@@ -4,7 +4,7 @@ import "../../css/OrdersTable/OrdersTable.css";
 import getOrders from "../../redux/actions/ordersActions";
 function OrdersTable() {
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.orders);
+  const orders = useSelector((state) => state.orders.orders);
 
   useEffect(() => {
     getOrders(dispatch);

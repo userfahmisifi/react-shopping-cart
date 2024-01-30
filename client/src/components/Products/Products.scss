@@ -9,7 +9,10 @@
     width: 68%;
     display: flex;
     justify-content: space-between;
-    
+    &.start{
+      justify-content:flex-start;
+      gap:10px;
+    }
 
     .item {
       width: 24%;

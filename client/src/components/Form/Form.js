@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
 import axios from 'axios'
 import "../../css/Form/Form.css";
 import Input from "../Input/Input";
 import OrderModal from "../OrderModal/OrderModal";
-
-function Form({ setShowForm }) {
-  const cartItems=useSelector(state=>state.cart)
+import { toogleForm } from "../../redux/actions/orderFormActions";
+import { toogleOrderModal } from "../../redux/actions/modalActions";
+import { setOrder } from "../../redux/actions/ordersActions";
+function Form() {
+  const dispatch=useDispatch()
+  
+  const cartItems=useSelector(state=>state.cart.items)
   const [values, setValues] = useState({ name: "", email: "" });
-  const [isOpen, setIsOpen] = useState(false);
   const [errors, setErrors] = useState({ name: "", email: ""});
-  const [order,setOrder]=useState({items:[]})
-
 
   const validateForm = () => {
     let errorsObj={ name: "", email: ""}
@@ -30,8 +31,9 @@ function Form({ setShowForm }) {
     validateForm();
     if(values.name && values.email){
       const {data}=await axios.post('http://localhost:4000/api/orders',{...values,items:cartItems})
-      setOrder(data)
-      setIsOpen(true)
+      
+      dispatch(setOrder(data))
+      dispatch(toogleOrderModal())
     }
   };
 
@@ -56,8 +58,8 @@ function Form({ setShowForm }) {
         {errors.email && <p>*{errors.email}</p>}
         <input type="submit" value="Submit" />
       </form>
-      <div onClick={() => setShowForm(false)}>&times;</div>
-      <OrderModal isOpen={isOpen} setIsOpen={setIsOpen} order={order} setShowForm={setShowForm}/>
+      <div onClick={() => dispatch(toogleForm())}>&times;</div>
+      <OrderModal/>
     </div>
   );
 }

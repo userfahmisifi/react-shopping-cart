@@ -1,9 +1,19 @@
-import React from 'react'
-import { GET_ALL_ORDERS } from '../actions/ordersActions'
+import { GET_ALL_ORDERS, SET_ORDER } from '../actions/ordersActions'
 
-function ordersReducer(state=[],action) {
+const initState={
+    orders:[],
+    order:{items:[]}
+}
+function ordersReducer(state=initState,action) {
     if(action.type===GET_ALL_ORDERS){
-        return action.payload
+        return {
+            ...state,orders:action.payload
+        }
+    }
+    else if(action.type===SET_ORDER){
+        return {
+            ...state,order:action.payload
+        }
     }
     return state
   
