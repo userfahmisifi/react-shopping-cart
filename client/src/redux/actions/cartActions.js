@@ -5,9 +5,11 @@ export const CLEAR_CART_Items = "CLEAR_CART_Items";
 export const INCREMENT_QTY = "INCREMENT_QTY";
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
 
+
+
 export const addCartItems = async (dispatch, item) => {
  
-    const { data } = await axios.post("http://localhost:4000/api/cart", item);
+    const { data } = await axios.post(`/api/cart`, item);
 
     dispatch({
       type: ADD_CART_Items,
@@ -20,7 +22,7 @@ export const incrementQuantity = async (dispatch, itemsInCart, index) => {
   let items = [...itemsInCart];
   let { _id: id } = items[index];
 
-  await axios.patch(`http://localhost:4000/api/cart/${id}`, {
+  await axios.patch(`/api/cart/${id}`, {
     qty: items[index].qty + 1,
   });
 
@@ -33,7 +35,7 @@ export const incrementQuantity = async (dispatch, itemsInCart, index) => {
 };
 
 export const getCartItems = async (dispatch) => {
-  const { data } = await axios.get("http://localhost:4000/api/cart");
+  const { data } = await axios.get(`/api/cart`);
   dispatch({
     type: GET_CART_Items,
     payload: data,
@@ -41,7 +43,7 @@ export const getCartItems = async (dispatch) => {
 };
 
 export const removeItemFromCart = async (dispatch, id, itemsInCart) => {
-  await axios.delete(`http://localhost:4000/api/cart/${id}`);
+  await axios.delete(`/api/cart/${id}`);
   let items = [...itemsInCart];
   items = items.filter((p) => p._id !== id);
 
@@ -52,7 +54,7 @@ export const removeItemFromCart = async (dispatch, id, itemsInCart) => {
 };
 
 export const clearCartItems = async (dispatch) => {
-  await axios.delete(`http://localhost:4000/api/cart`);
+  await axios.delete(`/api/cart`);
   dispatch({
     type: CLEAR_CART_Items,
     payload: [],

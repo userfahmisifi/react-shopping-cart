@@ -4,7 +4,7 @@ export const GET_ALL_ORDERS='GET_ALL_ORDERS'
 export const SET_ORDER='SET_ORDER'
 
 async function getOrders(dispatch) {
- const {data:orders}= await axios.get('http://localhost:4000/api/orders')
+ const {data:orders}= await axios.get(`/api/orders`)
 dispatch({
     type:GET_ALL_ORDERS,
     payload:orders

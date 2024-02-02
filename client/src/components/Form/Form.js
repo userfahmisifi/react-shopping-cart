@@ -30,7 +30,7 @@ function Form() {
     e.preventDefault();
     validateForm();
     if(values.name && values.email){
-      const {data}=await axios.post('http://localhost:4000/api/orders',{...values,items:cartItems})
+      const {data}=await axios.post('/api/orders',{...values,items:cartItems})
       
       dispatch(setOrder(data))
       dispatch(toogleOrderModal())

@@ -8,13 +8,13 @@ export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 export const SET_PRODUCT='SET_PRODUCT'
 
 
-const baseUrl = "http://localhost:4000/api/products";
 
 
 //products actions creators 
 
 export const fetchProducts = async (dispatch) => {
-  const { data: products } = await axios.get(`${baseUrl}`);
+  const { data: products } = await axios.get(`/api/products`)
+                                 ;
   products.reverse();
 
   dispatch({
@@ -26,7 +26,7 @@ export const fetchProducts = async (dispatch) => {
 
 
 export const filterProducts = async (dispatch, val1, val2) => {
-  let url = `${baseUrl}?sizes=${val1}`;
+  let url = `/api/products?sizes=${val1}`;
 
   if (val2 === "price" || val2 === "-price") {
     url = `${url}&sort=${val2}`;
