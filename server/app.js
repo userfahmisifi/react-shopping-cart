@@ -15,7 +15,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRouter);
 
 if(process.env.NODE_ENV==='production'){
-    app.use(express.static('public'))
+    app.use(express.static('../client/build'))
 
 }
 
