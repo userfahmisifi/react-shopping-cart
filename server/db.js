@@ -4,7 +4,7 @@ mongoose.set("strictQuery", false);
 
 module.exports = function () {
   mongoose
-    .connect(uri)
+    .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((conn) => console.log("connection to database success"))
     .catch((error) => console.log("connection to database fail"));
 };
