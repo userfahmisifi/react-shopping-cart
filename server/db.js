@@ -5,5 +5,5 @@ module.exports = function () {
   mongoose
     .connect(uri)
     .then((conn) => console.log("connection to database success"))
-    .catch((error) => console.log("connection to database fail"));
+    .catch((error) => console.log("connection to database fail",error.message));
 };
